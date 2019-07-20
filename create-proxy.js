@@ -3,8 +3,9 @@ const fs = require('fs');
 const logger = require('logger').createLogger();
 
 const PLUGIN_NAME = 'truffle-proxy';
-const TEMPLATE_DIR = 'templates';
-const CONTRACT_DIR = 'contracts';
+const TEMPLATE_DIR_NAME = 'templates';
+const CONTRACT_DIR_NAME = 'contracts';
+const MIGRATION_DIR_NAME = 'migrations';
 
 const USAGE = ``;
 
@@ -14,9 +15,6 @@ Congratulations, you have just created a proxy contract!
 To learn more about how to integrate with a proxy contract, view Example.sol
 `;
 
-const TEMPLATES = [
-  'contract.sol'
-];
 
 module.exports = async (config) => {
   const commandName = config._[0];
@@ -27,18 +25,47 @@ module.exports = async (config) => {
     return;
   }
 
-  const templateBaseDir = path.join(config._values.working_directory, 'node_modules', PLUGIN_NAME, 'templates');
-  const contractDestination = path.join(config._values.working_directory, CONTRACT_DIR);
-  if (fs.existsSync(templateBaseDir) && fs.existsSync(contractDestination)) {
-    TEMPLATES.forEach((template) => {
-      const source = path.join(templateBaseDir, template);
+  const projectDir = config._values.working_directory;
+  const nodeModuleDir = path.join(projectDir, 'node_modules');
+  const pluginDir = path.join(nodeModuleDir, PLUGIN_NAME);
+  const templateDir = path.join(pluginDir, TEMPLATE_DIR_NAME)
+  const solidityTemplateDir = path.join(templateDir, 'solidity');
+  const migrationTemplateDir = path.join(templateDir, 'migration');
+  const contractDestination = path.join(projectDir, CONTRACT_DIR_NAME);
+  const migrationDestination = path.join(projectDir, MIGRATION_DIR_NAME);
+
+  if (fs.existsSync(solidityTemplateDir) &&
+    fs.existsSync(migrationTemplateDir) &&
+    fs.existsSync(contractDestination) &&
+    fs.existsSync(migrationDestination)) {
+
+    solidityTemplates = fs.readdirSync(solidityTemplateDir);
+    migrationTemplates = fs.readdirSync(migrationTemplateDir);
+    migrations = fs.readdirSync(migrationDestination);
+
+    logger.info(`Generating solidity templates...`);
+    solidityTemplates.forEach((template) => {
+      const source = path.join(solidityTemplateDir, template);
       const destination = path.join(contractDestination, template);
-      if (fs.existsSync(source)) {
-        logger.info(`Generating ${template}...`);
-        fs.copyFileSync(source, destination);
-      } else {
-        logger.error(`Missing template ${template}`)
+      logger.info(`...${template}...`);
+      fs.copyFileSync(source, destination);
+    });
+
+    var migrationCounter = 0;
+    migrations.forEach((migration) => {
+      if (migration.split('_')[0] > migrationCounter) {
+        migrationCounter = migration.split('_')[0];
       }
+    });
+
+    logger.info(`Generating migration templates...`);
+    migrationTemplates.forEach((template) => {
+      migrationCounter++;
+      destTemplate = migrationCounter + "_" + template;
+      const source = path.join(migrationTemplateDir, template);
+      const destination = path.join(migrationDestination, destTemplate);
+      logger.info(`...${destTemplate}...`);
+      fs.copyFileSync(source, destination);
     });
 
     // FIXME: generate migration file
@@ -46,6 +73,7 @@ module.exports = async (config) => {
 
     logger.info(SUMMARY);
   } else {
+    logger.error("Something went wrong ..");
     // FIXME: something went wrong
   }
 
