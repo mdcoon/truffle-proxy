@@ -1,0 +1,8 @@
+{
+  "commands": {
+    "create-proxy": "create-proxy.js",
+    "summarize-proxy": "summarize-proxy.js",
+    "test-proxy": "test-proxy.js",
+    "migrate-proxy": "migrate-proxy.js"
+  }
+}
