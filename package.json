@@ -1,0 +1,19 @@
+{
+  "name": "truffle-proxy",
+  "version": "1.0.0",
+  "description": "Upgradeable contract support in Truffle",
+  "main": "create-proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdcoon/truffle-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdcoon/truffle-proxy/issues"
+  },
+  "homepage": "https://github.com/mdcoon/truffle-proxy#readme"
+}
