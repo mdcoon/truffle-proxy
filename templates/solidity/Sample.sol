@@ -15,7 +15,19 @@ contract Sample  is SampleDataLayout, Owned, Proxiable, LibraryLock {
         emit NewContractAddress(myAddr);
     }
 
-    function updateCode(address newAddress) public onlyOwner delegatedOnly {
+    /**
+     * This function should normally be guarded by onlyOwner. The modifier was
+     * removed for the purposes of the demo.
+     *
+     * Because the proxy-test ganache instance running a forked chain uses
+     * different accounts than those used to deploy the contract on the
+     * original chain, it does not have access to the owner account.
+     *
+     * It is important for the proxy-test feature to run the upgrade pattern
+     * because it needs to verify that an upgrade deployed live will work
+     * properly.
+     */
+    function updateCode(address newAddress) public delegatedOnly {
         updateCodeAddress(newAddress);
         emit NewContractAddress(newAddress)
     }
