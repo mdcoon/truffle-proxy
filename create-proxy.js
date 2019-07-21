@@ -80,7 +80,7 @@ module.exports = async (config) => {
     logger.info(`Generating unit tests...`);
     tests.forEach((test) => {
       const source = path.join(solidityTemplateDir, test);
-      const destination = path.join(testDestination, template);
+      const destination = path.join(testDestination, test);
       logger.info(`...${test}...`);
       fs.copyFileSync(source, destination);
     });
