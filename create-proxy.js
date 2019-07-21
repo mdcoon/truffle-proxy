@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const logger = require('logger').createLogger();
+const logger = console;;
 
 const PLUGIN_NAME = 'truffle-proxy';
 const TEMPLATE_DIR_NAME = 'templates';
