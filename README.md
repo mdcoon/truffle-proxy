@@ -2,7 +2,7 @@
 
 Originally developed during **ConsenSys Grants Hackathon - New York - July 2019**
 
-> Extend Truffle CLI with [EIP-1820](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1820.md) proxy support. Proxy support provides a simple upgrade path for contracts to maintain storage, while making changes to the underlying contract implementation.
+> Extend Truffle CLI with [EIP-1822](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md) proxy support. Proxy support provides a simple upgrade path for contracts to maintain storage, while making changes to the underlying contract implementation.
 
 ## Install
 
