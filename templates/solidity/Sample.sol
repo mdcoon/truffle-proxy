@@ -11,6 +11,8 @@ contract Sample  is SampleDataLayout, Owned, Proxiable, LibraryLock {
         maxGuests = max;
         initialize();
         setOwner(msg.sender);
+        address myAddr = codeAddress();
+        emit NewContractAddress(myAddr);
     }
 
     function updateCode(address newAddress) public onlyOwner delegatedOnly {
