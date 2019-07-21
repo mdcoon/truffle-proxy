@@ -6,6 +6,7 @@ const PLUGIN_NAME = 'truffle-proxy';
 const TEMPLATE_DIR_NAME = 'templates';
 const CONTRACT_DIR_NAME = 'contracts';
 const MIGRATION_DIR_NAME = 'migrations';
+const TEST_DIR_NAME = 'test';
 
 const USAGE = ``;
 
@@ -29,18 +30,26 @@ module.exports = async (config) => {
   const nodeModuleDir = path.join(projectDir, 'node_modules');
   const pluginDir = path.join(nodeModuleDir, PLUGIN_NAME);
   const templateDir = path.join(pluginDir, TEMPLATE_DIR_NAME)
+
   const solidityTemplateDir = path.join(templateDir, 'solidity');
   const migrationTemplateDir = path.join(templateDir, 'migration');
+  const testTemplateDir = path.join(templateDir, 'test');
+
   const contractDestination = path.join(projectDir, CONTRACT_DIR_NAME);
   const migrationDestination = path.join(projectDir, MIGRATION_DIR_NAME);
+  const testDestination = path.join(projectDir, TEST_DIR_NAME);
 
   if (fs.existsSync(solidityTemplateDir) &&
     fs.existsSync(migrationTemplateDir) &&
     fs.existsSync(contractDestination) &&
-    fs.existsSync(migrationDestination)) {
+    fs.existsSync(migrationDestination) &&
+    fs.existsSync(testDestination)
+  ) {
 
     solidityTemplates = fs.readdirSync(solidityTemplateDir);
     migrationTemplates = fs.readdirSync(migrationTemplateDir);
+    tests = fs.readdirSync(testTemplateDir);
+
     migrations = fs.readdirSync(migrationDestination);
 
     logger.info(`Generating solidity templates...`);
@@ -68,8 +77,13 @@ module.exports = async (config) => {
       fs.copyFileSync(source, destination);
     });
 
-    // FIXME: generate migration file
-    // FIXME: what if existing migrations?
+    logger.info(`Generating unit tests...`);
+    tests.forEach((test) => {
+      const source = path.join(testTemplateDir, test);
+      const destination = path.join(testDestination, test);
+      logger.info(`...${test}...`);
+      fs.copyFileSync(source, destination);
+    });
 
     logger.info(SUMMARY);
   } else {
