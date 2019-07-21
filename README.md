@@ -1,6 +1,6 @@
 # Welcome to truffle-proxy
 
-Originally developed during **ConsenSys Grants Hackathon - New York - July 2019**
+Winning project at **ConsenSys Grants Hackathon - New York - July 2019**
 
 > See **truffle-proxy-ui** [here](https://github.com/mdcoon/truffle-proxy-ui)
 
