@@ -1,0 +1,29 @@
+{
+  "name": "truffle-proxy",
+  "version": "1.0.0",
+  "description": "Upgradeable contract support in Truffle",
+  "main": "create-proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdcoon/truffle-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdcoon/truffle-proxy/issues"
+  },
+  "homepage": "https://github.com/mdcoon/truffle-proxy#readme",
+  "dependencies": {
+    "ganache": "^6.4.4",
+    "truffle-core": "^5.0.28",
+    "truffle-environment": "^0.1.4",
+    "truffle-legacy-system": "^1.0.7",
+    "truffle-migrate": "^3.0.26",
+    "truffle-resolver": "^5.0.14",
+    "truffle-workflow-compile": "^2.0.24",
+    "web3": "^1.0.0-beta.55"
+  }
+}
