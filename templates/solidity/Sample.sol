@@ -15,6 +15,7 @@ contract Sample  is SampleDataLayout, Owned, Proxiable, LibraryLock {
 
     function updateCode(address newAddress) public onlyOwner delegatedOnly {
         updateCodeAddress(newAddress);
+        emit NewContractAddress(newAddress)
     }
 
     function visit() public delegatedOnly {
