@@ -81,6 +81,23 @@ contract("Sample", accounts => {
   //
   // });
 
+    it("should be 5 max guests", async () => {
+
+      const sampleDeployment = await Sample.deployed();
+      const proxyDeployment = await Proxy.deployed();
+
+      const sampleContractInstance = new web3.eth.Contract(
+        sampleDeployment.abi,
+        proxyDeployment.address,
+        { address: proxyDeployment.address }
+      );
+
+      const maxGuests = new BN(await sampleContractInstance.methods.maxGuests().call()).toNumber();
+
+      assert.equal(maxGuests, 5);
+    });
+
+
   it("should increment counter by 1", async () => {
 
     const accounts = await web3.eth.getAccounts();
