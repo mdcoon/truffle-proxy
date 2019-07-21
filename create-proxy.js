@@ -12,7 +12,7 @@ const USAGE = ``;
 const SUMMARY = `
 Congratulations, you have just created a proxy contract!
 
-To learn more about how to integrate with a proxy contract, view Example.sol
+To learn more about how to interact with a proxy contract, view Sample.sol
 `;
 
 

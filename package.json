@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mdcoon/truffle-proxy/issues"
   },
-  "homepage": "https://github.com/mdcoon/truffle-proxy#readme"
+  "homepage": "https://github.com/mdcoon/truffle-proxy#readme",
+  "dependencies": {
+    "logger": "0.0.1"
+  }
 }
