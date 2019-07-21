@@ -7,48 +7,58 @@ Originally developed during **ConsenSys Grants Hackathon - New York - July 2019*
 ## Install
 
 ```sh
-npm install --save-dev truffle-plugin-proxy
+// within your truffle project:
+npm install --save-dev truffle-proxy
 ```
+
+Add the following to your `truffle-config.js`
+```json
+plugins: [
+  "truffle-proxy"
+]
+```
+
 
 ## Usage
 
+### Add proxy support to a truffle project
+Generates EIP-1820 compatible proxy implementation along with example files and
+unit tests for your project.
 ```sh
-
-// Generate proxy support for a Truffle project
 truffle run create-proxy
+```
 
-// Run all existing tests
+### Run unit tests
+Executes all unit tests against an embedded Ganache blockchain compatible with
+proxy contract.
+```sh
 truffle run test-proxy
+```
 
-// Summarize proxy & contract deployment information
+### Display summary network info
+Displays a summary of network / address information for deployed contracts.
+Includes details highlighting proxy contracts.
+```sh
 truffle run summarize-proxy
-
-// Deploy a new underlying contract and update proxy to use new contract address
-truffle run upgrade
-
 ```
 
 ## Authors
-
-👤 **Harvinder Ghotra**
-
-- Github: [@hghotra](https://github.com/hghotra)
-
-
-👤 **Mitchell Opatowsky**
-
-- Github: [@official-mitchell](https://github.com/official-mitchell)
-
 
 👤 **Mike Coon**
 
 - Github: [@mdcoon](https://github.com/mdcoon)
 
+👤 **Harvinder Ghotra**
+
+- Github: [@hghotra](https://github.com/hghotra)
+
+👤 **Mitchell Opatowsky**
+
+- Github: [@official-mitchell](https://github.com/official-mitchell)
 
 👤 **Mike Powers**
 
 - Github: [@mjpowersjr](https://github.com/mjpowersjr)
-
 
 👤 **Will Shahda**
 
