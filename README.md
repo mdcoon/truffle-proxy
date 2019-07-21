@@ -7,15 +7,18 @@ Originally developed during **ConsenSys Grants Hackathon - New York - July 2019*
 ## Install
 
 ```sh
+// tip: to start a new truffle project:
+// truffle init
 // within your truffle project:
-npm install --save-dev truffle-proxy
+npm init -y
+npm install --save-dev git+https://github.com/mdcoon/truffle-proxy
 ```
 
 Add the following to your `truffle-config.js`
 ```json
-plugins: [
-  "truffle-proxy"
-]
+  plugins: [
+    "truffle-proxy"
+  ]
 ```
 
 
